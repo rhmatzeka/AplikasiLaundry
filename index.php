@@ -1,208 +1,275 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAUNDRYGO • Robotic Laundry Revolution</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <title>LAUNDRYGO • Kebersihan Masa Depan</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        /* Custom Blue Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #0284c7, #2dd4bf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Bubble Background Decoration */
+        .bubble {
+            position: absolute;
+            background: rgba(56, 189, 248, 0.1);
+            border-radius: 50%;
+        }
+    </style>
 </head>
-<body class="relative text-white overflow-x-hidden">
+<body class="bg-slate-50 text-slate-800 overflow-x-hidden">
 
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follow"></div>
-    <div id="particles-js" class="fixed inset-0 -z-10"></div>
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                    <i class="fas fa-soap"></i>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tight text-slate-800">
+                    Laundry<span class="text-blue-500">Go</span>
+                </h1>
+            </a>
 
-    <!-- Navbar -->
-    <nav class="navbar fixed top-0 w-full z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <h1 class="text-3xl md:text-5xl font-black glow bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-600">
-                LAUNDRY<span class="text-pink-400">GO</span>
-            </h1>
-
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex items-center space-x-6 lg:space-x-10 text-lg">
-                <a href="#about" class="hover:text-cyan-400 transition">About</a>
-                <a href="#pricing" class="hover:text-cyan-400 transition">Harga</a>
-                <a href="#features" class="hover:text-cyan-400 transition">Fitur</a>
-                <a href="login.php" class="btn-neon text-sm lg:text-lg px-6 py-3">Login</a>
-                <a href="register.php" class="btn-neon bg-cyan-500 hover:bg-cyan-600 text-sm lg:text-lg px-6 py-3">Daftar</a>
+            <div class="hidden md:flex items-center space-x-8 font-medium text-slate-600">
+                <a href="#about" class="hover:text-blue-500 transition">Tentang</a>
+                <a href="#pricing" class="hover:text-blue-500 transition">Harga</a>
+                <a href="#features" class="hover:text-blue-500 transition">Keunggulan</a>
+                <div class="flex items-center gap-3 ml-4">
+                    <a href="login.php" class="px-5 py-2.5 text-blue-600 font-semibold hover:bg-blue-50 rounded-full transition">Masuk</a>
+                    <a href="register.php" class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow-md shadow-blue-200 transition transform hover:-translate-y-0.5">Daftar Sekarang</a>
+                </div>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="menu-btn" class="md:hidden text-3xl">
+            <button id="menu-btn" class="md:hidden text-2xl text-slate-600">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-95 absolute top-full left-0 w-full border-t border-purple-800">
-            <div class="flex flex-col py-6 space-y-6 text-center text-xl">
-                <a href="#about" class="hover:text-cyan-400 transition">About</a>
-                <a href="#pricing" class="hover:text-cyan-400 transition">Harga</a>
-                <a href="#features" class="hover:text-cyan-400 transition">Fitur</a>
-                <a href="login.php" class="btn-neon mx-20 py-4">Login</a>
-                <a href="register.php" class="btn-neon bg-cyan-500 hover:bg-cyan-600 mx-20 py-4">Daftar</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute top-full left-0 w-full shadow-lg">
+            <div class="flex flex-col py-6 space-y-4 px-6">
+                <a href="#about" class="text-slate-600 font-medium">Tentang</a>
+                <a href="#pricing" class="text-slate-600 font-medium">Harga</a>
+                <a href="#features" class="text-slate-600 font-medium">Keunggulan</a>
+                <hr class="border-slate-100">
+                <a href="login.php" class="text-center w-full py-3 text-blue-600 font-bold border border-blue-100 rounded-xl">Masuk</a>
+                <a href="register.php" class="text-center w-full py-3 bg-blue-600 text-white font-bold rounded-xl shadow-lg shadow-blue-200">Daftar</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO -->
-    <section class="min-h-screen flex items-center justify-center text-center px-6 pt-20">
-        <div data-aos="zoom-in">
-            <h1 class="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black glow leading-tight">
-                <span class="text-cyan-400">LAUNDRY</span><br>
-                <span class="text-purple-400">AJA</span><br>
-                <span class="text-pink-400 text-4xl sm:text-6xl md:text-7xl">REVOLUTION</span>
-            </h1>
-            <p class="text-xl sm:text-3xl md:text-4xl mt-8 mb-6 opacity-90" id="typing"></p>
-            <p class="text-lg sm:text-2xl mb-10 opacity-80">Cuci pakaian jadi semudah kirim chat 24/7 Tanpa ribet</p>
-            <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="register.php" class="btn-neon text-xl sm:text-2xl px-12 py-5">MULAI SEKARANG</a>
-                <a href="#pricing" class="btn-neon bg-transparent border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black text-xl sm:text-2xl px-12 py-5">Lihat Harga</a>
-            </div>
-        </div>
-    </section>
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] bg-cyan-100 rounded-full blur-3xl opacity-50 -z-10"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>
 
-    <!-- ABOUT -->
-    <section id="about" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-            <div data-aos="fade-up">
-                <h2 class="text-4xl sm:text-6xl font-black glow mb-8">Tentang <span class="text-cyan-400">LAUNDRYGO</span></h2>
-                <p class="text-lg sm:text-xl leading-relaxed mb-6">
-                    Didirikan tahun 2025, LAUNDRYGO adalah startup teknologi laundry pertama di Indonesia yang menggabungkan <b>AI, Robot Drone, dan IoT</b> untuk memberikan pengalaman mencuci pakaian yang belum pernah ada sebelumnya.
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-bold mb-6 border border-blue-100">
+                    <i class="fas fa-bolt"></i> Revolusi Laundry Digital #1
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black leading-tight text-slate-900 mb-6">
+                    Cuci Baju <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400">Tanpa Ribet.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-500 mb-8 leading-relaxed max-w-lg">
+                    Nikmati layanan laundry antar-jemput berbasis teknologi. Cukup order dari HP, driver & robot kami yang bekerja. Wangi, Bersih, Praktis.
                 </p>
-                <p class="text-lg sm:text-xl leading-relaxed">
-                    Kami bukan laundry biasa. Kami adalah <b>masa depan kebersihan</b>.
-                </p>
-                <div class="mt-10 grid grid-cols-3 gap-6 text-center">
-                    <div><h3 class="text-4xl sm:text-5xl font-black text-cyan-400">50K+</h3><p class="text-sm">Pelanggan</p></div>
-                    <div><h3 class="text-4xl sm:text-5xl font-black text-purple-400">127</h3><p class="text-sm">Robot Aktif</p></div>
-                    <div><h3 class="text-4xl sm:text-5xl font-black text-pink-400">4.9</h3><p class="text-sm">Rating</p></div>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="register.php" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold rounded-full shadow-xl shadow-blue-200 transition transform hover:-translate-y-1 text-center">
+                        <i class="fas fa-rocket mr-2"></i> Mulai Laundry
+                    </a>
+                    <a href="#pricing" class="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-lg font-bold rounded-full shadow-sm transition text-center">
+                        Lihat Paket
+                    </a>
+                </div>
+                
+                <div class="mt-10 flex items-center gap-4 text-sm font-medium text-slate-500">
+                    <div class="flex -space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 border-2 border-white"></div>
+                        <div class="w-10 h-10 rounded-full bg-slate-300 border-2 border-white"></div>
+                        <div class="w-10 h-10 rounded-full bg-slate-400 border-2 border-white"></div>
+                    </div>
+                    <p>Dipercaya oleh 50.000+ Pelanggan</p>
                 </div>
             </div>
-            <div data-aos="fade-up" class="text-center">
-                <div class="bg-gradient-to-br from-cyan-500 to-purple-600 p-8 sm:p-10 rounded-3xl shadow-2xl">
-                    <i class="fas fa-robot text-6xl sm:text-9xl mb-6"></i>
-                    <h3 class="text-2xl sm:text-4xl font-bold">Powered by AI & Robotics</h3>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- PRICING -->
-    <section id="pricing" class="py-20 px-6 bg-black bg-opacity-50">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl sm:text-7xl font-black text-center glow mb-16">Pilih Paket Anda</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Basic -->
-                <div class="card p-8 text-center" data-aos="zoom-in">
-                    <h3 class="text-3xl sm:text-4xl font-bold mb-4">BASIC</h3>
-                    <p class="text-5xl sm:text-6xl font-black my-6">Rp7.000<span class="text-xl sm:text-2xl">/kg</span></p>
-                    <ul class="space-y-3 mb-8 text-left text-sm sm:text-base">
-                        <li>Antar Jemput Gratis</li>
-                        <li>Cuci + Kering</li>
-                        <li>Setrika Rapi</li>
-                        <li>Wangikan</li>
-                        <li>Estimasi 2 Hari</li>
-                    </ul>
-                    <a href="register.php" class="btn-neon w-full py-4 text-lg">Pilih Basic</a>
-                </div>
-
-                <!-- Premium -->
-                <div class="card p-8 text-center border-4 border-cyan-400" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="bg-cyan-400 text-black px-6 py-2 rounded-full inline-block mb-4 text-sm">REKOMENDASI</div>
-                    <h3 class="text-4xl sm:text-5xl font-bold mb-4">PREMIUM</h3>
-                    <p class="text-6xl sm:text-7xl font-black my-6">Rp12.000<span class="text-2xl">/kg</span></p>
-                    <ul class="space-y-3 mb-8 text-left text-sm sm:text-base">
-                        <li>Semua fitur Basic</li>
-                        <li>Express 6 Jam Jadi</li>
-                        <li>Parfum Import</li>
-                        <li>Lipatan Premium</li>
-                        <li>Packing Exclusive</li>
-                        <li>Prioritas Driver</li>
-                    </ul>
-                    <a href="register.php" class="btn-neon w-full py-5 text-xl bg-cyan-400 hover:bg-cyan-300 text-black">Pilih Premium</a>
-                </div>
-
-                <!-- Enterprise -->
-                <div class="card p-8 text-center" data-aos="zoom-in" data-aos-delay="400">
-                    <h3 class="text-3xl sm:text-4xl font-bold mb-4">ENTERPRISE</h3>
-                    <p class="text-5xl sm:text-6xl font-black my-6">Custom</p>
-                    <p class="text-lg sm:text-xl mb-6">Untuk Kost • Hotel • Kantor</p>
-                    <ul class="space-y-3 mb-8 text-left text-sm sm:text-base">
-                        <li>Kapasitas 100kg+/hari</li>
-                        <li>Jadwal Rutin</li>
-                        <li>Driver Khusus</li>
-                        <li>Laporan Digital</li>
-                        <li>Harga Spesial</li>
-                    </ul>
-                    <a href="https://wa.me/628123456789" class="btn-neon w-full py-4 text-lg">Hubungi Sales</a>
+            <div class="relative hidden md:block" data-aos="fade-left">
+                <div class="relative z-10 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 rotate-2 hover:rotate-0 transition duration-500">
+                   <div class="bg-blue-50 rounded-2xl h-96 flex items-center justify-center overflow-hidden relative">
+                        <i class="fas fa-tshirt text-9xl text-blue-200/50 absolute"></i>
+                        <div class="z-10 text-center">
+                            <div class="w-24 h-24 bg-white rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg text-blue-500 text-4xl">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-800">Selesai Dicuci</h3>
+                            <p class="text-slate-500">Paket Premium • 4kg</p>
+                        </div>
+                   </div>
+                   <div class="absolute -left-10 top-10 bg-white p-4 rounded-2xl shadow-xl border border-slate-50 flex items-center gap-3 animate-bounce">
+                       <div class="w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                           <i class="fas fa-truck"></i>
+                       </div>
+                       <div>
+                           <p class="text-xs text-slate-400 font-bold">STATUS</p>
+                           <p class="font-bold text-slate-800">Sedang Dijemput</p>
+                       </div>
+                   </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FEATURES -->
-    <section id="features" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl sm:text-7xl font-black text-center glow mb-16">Fitur Canggih</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="card p-6 text-center" data-aos="fade-up">
-                    <i class="fas fa-drone text-5xl sm:text-6xl mb-4 text-cyan-400"></i>
-                    <h3 class="text-lg sm:text-2xl font-bold">Drone Pickup</h3>
+    <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <span class="text-blue-600 font-bold tracking-wider uppercase text-sm">Kenapa Kami?</span>
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 mt-3 mb-4">Teknologi Canggih untuk <br> Pakaian Kesayangan.</h2>
+                <p class="text-slate-500 text-lg">Kami menggabungkan mesin cuci industrial terbaik dengan sistem tracking real-time.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="p-8 rounded-3xl bg-slate-50 hover:bg-blue-50 transition duration-300 border border-slate-100 group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl text-blue-500 mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Express 6 Jam</h3>
+                    <p class="text-slate-500 leading-relaxed">Butuh cepat? Layanan kilat kami siap mencuci dan menyetrika dalam hitungan jam.</p>
                 </div>
-                <div class="card p-6 text-center" data-aos="fade-up" data-aos-delay="100">
-                    <i class="fas fa-map-marked-alt text-5xl sm:text-6xl mb-4 text-purple-400"></i>
-                    <h3 class="text-lg sm:text-2xl font-bold">Live Tracking</h3>
+
+                <div class="p-8 rounded-3xl bg-slate-50 hover:bg-blue-50 transition duration-300 border border-slate-100 group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl text-cyan-500 mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Live Tracking</h3>
+                    <p class="text-slate-500 leading-relaxed">Pantau status cucian dan lokasi driver secara real-time langsung dari aplikasi.</p>
                 </div>
-                <div class="card p-6 text-center" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-bolt text-5xl sm:text-6xl mb-4 text-pink-400"></i>
-                    <h3 class="text-lg sm:text-2xl font-bold">6 Jam Jadi</h3>
+
+                <div class="p-8 rounded-3xl bg-slate-50 hover:bg-blue-50 transition duration-300 border border-slate-100 group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl text-purple-500 mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">AI Sorting</h3>
+                    <p class="text-slate-500 leading-relaxed">Teknologi AI memilah jenis kain untuk memastikan perawatan pencucian yang tepat.</p>
                 </div>
-                <div class="card p-6 text-center" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-shield-alt text-5xl sm:text-6xl mb-4 text-green-400"></i>
-                    <h3 class="text-lg sm:text-2xl font-bold">100% Aman</h3>
+
+                <div class="p-8 rounded-3xl bg-slate-50 hover:bg-blue-50 transition duration-300 border border-slate-100 group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-2xl text-green-500 mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-shield-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">Higienis & Aman</h3>
+                    <p class="text-slate-500 leading-relaxed">Detergen premium anti-bakteri dan jaminan ganti rugi jika pakaian rusak/hilang.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-black bg-opacity-70 py-12 px-6 border-t border-purple-800">
-        <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-4xl sm:text-5xl font-black glow mb-4">LAUNDRYGO</h1>
-            <p class="text-lg sm:text-xl mb-4">Masa Depan Laundry Sudah Tiba © 2025</p>
-            <p class="text-sm sm:text-base">Made with untuk Indonesia Bersih</p>
+    <section id="pricing" class="py-20 bg-slate-50 relative">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-black text-center text-slate-900 mb-16">Pilihan Paket Hemat</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 hover:-translate-y-2 transition duration-300" data-aos="fade-up">
+                    <h3 class="text-lg font-bold text-slate-500 uppercase tracking-widest mb-4">Kiloan Hemat</h3>
+                    <div class="flex items-baseline mb-6">
+                        <span class="text-4xl font-black text-slate-800">Rp7.000</span>
+                        <span class="text-slate-500 ml-2">/kg</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-slate-600">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Cuci Kering Setrika</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Parfum Standar</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Estimasi 2-3 Hari</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Gratis Jemput (>5kg)</li>
+                    </ul>
+                    <a href="register.php" class="block w-full py-4 rounded-xl border-2 border-slate-200 text-slate-700 font-bold text-center hover:border-blue-500 hover:text-blue-500 transition">Pilih Paket</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-2xl border-2 border-blue-500 relative transform md:-translate-y-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-bl-xl rounded-tr-2xl">POPULER</div>
+                    <h3 class="text-lg font-bold text-blue-600 uppercase tracking-widest mb-4">Express Premium</h3>
+                    <div class="flex items-baseline mb-6">
+                        <span class="text-5xl font-black text-slate-900">Rp12.000</span>
+                        <span class="text-slate-500 ml-2">/kg</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-slate-700 font-medium">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> <b>Selesai 6 Jam</b></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Parfum Grade A (Tahan Lama)</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Packing Plastik & Hanger</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Prioritas Driver</li>
+                    </ul>
+                    <a href="register.php" class="block w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-center shadow-lg shadow-blue-200 hover:bg-blue-700 transition">Pilih Premium</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-lg font-bold text-slate-500 uppercase tracking-widest mb-4">Satuan / Dry Clean</h3>
+                    <div class="flex items-baseline mb-6">
+                        <span class="text-2xl font-black text-slate-800">Mulai Rp15rb</span>
+                        <span class="text-slate-500 ml-2">/pcs</span>
+                    </div>
+                    <ul class="space-y-4 mb-8 text-slate-600">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Bed Cover / Selimut</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Jas & Gaun Pesta</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Sepatu & Tas</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Treatment Noda Khusus</li>
+                    </ul>
+                    <a href="https://wa.me/628123456789" class="block w-full py-4 rounded-xl border-2 border-slate-200 text-slate-700 font-bold text-center hover:border-blue-500 hover:text-blue-500 transition">Hubungi CS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-300 py-16 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-2">
+                <h2 class="text-3xl font-bold text-white mb-6">Laundry<span class="text-blue-500">Go</span></h2>
+                <p class="text-slate-400 leading-relaxed max-w-sm">Platform laundry digital pertama di Indonesia yang mengutamakan kecepatan, kebersihan, dan teknologi. Pakaian bersih, hati senang.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6">Tautan</h4>
+                <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-white transition">Beranda</a></li>
+                    <li><a href="#" class="hover:text-white transition">Tentang Kami</a></li>
+                    <li><a href="#" class="hover:text-white transition">Cek Resi</a></li>
+                    <li><a href="#" class="hover:text-white transition">Syarat & Ketentuan</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6">Hubungi Kami</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3"><i class="fab fa-whatsapp text-green-500 text-xl"></i> +62 812 3456 7890</li>
+                    <li class="flex items-center gap-3"><i class="far fa-envelope text-blue-500 text-xl"></i> hello@laundrygo.id</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-map-marker-alt text-red-500 text-xl"></i> Jakarta Selatan, ID</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-slate-800 pt-8 text-center text-sm">
+            <p>&copy; 2025 LaundryGo Indonesia. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="assets/js/script.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({duration: 1000, once: true});
-
-        // Mobile Menu Toggle
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
         });
 
-        // Typing Animation
-        function typeWriter(element, text, speed = 80) {
-            let i = 0;
-            element.innerHTML = '';
-            const timer = setInterval(() => {
-                element.innerHTML += text.charAt(i);
-                i++;
-                if (i > text.length) clearInterval(timer);
-            }, speed);
-        }
-        setTimeout(() => typeWriter(document.getElementById('typing'), "Cuci pakaian jadi semudah kirim chat.", 80), 1000);
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
     </script>
 </body>
 </html>
