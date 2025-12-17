@@ -44,7 +44,7 @@ if($_POST){
         body { font-family: 'Poppins', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-6 relative overflow-x-hidden">
 
     <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] bg-cyan-100 rounded-full blur-3xl opacity-50 -z-10"></div>
     <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-[400px] h-[400px] bg-blue-100 rounded-full blur-3xl opacity-50 -z-10"></div>

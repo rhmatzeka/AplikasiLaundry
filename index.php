@@ -84,7 +84,7 @@
                     Nikmati layanan laundry antar-jemput berbasis teknologi. Cukup order dari HP, driver & robot kami yang bekerja. Wangi, Bersih, Praktis.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="register.php" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold rounded-full shadow-xl shadow-blue-200 transition transform hover:-translate-y-1 text-center">
+                    <a href="login.php" class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold rounded-full shadow-xl shadow-blue-200 transition transform hover:-translate-y-1 text-center">
                         <i class="fas fa-rocket mr-2"></i> Mulai Laundry
                     </a>
                     <a href="#pricing" class="px-8 py-4 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 text-lg font-bold rounded-full shadow-sm transition text-center">
@@ -189,7 +189,7 @@
                         <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Estimasi 2-3 Hari</li>
                         <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Gratis Jemput (>5kg)</li>
                     </ul>
-                    <a href="register.php" class="block w-full py-4 rounded-xl border-2 border-slate-200 text-slate-700 font-bold text-center hover:border-blue-500 hover:text-blue-500 transition">Pilih Paket</a>
+                    <a href="login.php" class="block w-full py-4 rounded-xl border-2 border-slate-200 text-slate-700 font-bold text-center hover:border-blue-500 hover:text-blue-500 transition">Pilih Paket</a>
                 </div>
 
                 <div class="bg-white p-8 rounded-3xl shadow-2xl border-2 border-blue-500 relative transform md:-translate-y-4" data-aos="fade-up" data-aos-delay="100">
@@ -205,7 +205,7 @@
                         <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Packing Plastik & Hanger</li>
                         <li class="flex items-center gap-3"><i class="fas fa-check-circle text-blue-500"></i> Prioritas Driver</li>
                     </ul>
-                    <a href="register.php" class="block w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-center shadow-lg shadow-blue-200 hover:bg-blue-700 transition">Pilih Premium</a>
+                    <a href="login.php" class="block w-full py-4 rounded-xl bg-blue-600 text-white font-bold text-center shadow-lg shadow-blue-200 hover:bg-blue-700 transition">Pilih Premium</a>
                 </div>
 
                 <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 hover:-translate-y-2 transition duration-300" data-aos="fade-up" data-aos-delay="200">

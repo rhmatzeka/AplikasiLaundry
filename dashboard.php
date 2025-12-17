@@ -17,7 +17,6 @@ $user = $_SESSION['user'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
         body { font-family: 'Poppins', sans-serif; }
         .badge { @apply px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider; }
@@ -79,7 +78,6 @@ $user = $_SESSION['user'];
         <?php elseif($user['role'] == 'driver'): ?>
             
             <?php 
-                // Hitung Rata-rata Rating
                 $qRating = $pdo->prepare("SELECT AVG(rating) as avg_rating, COUNT(*) as total_ulasan FROM orders WHERE driver_id = ? AND rating > 0");
                 $qRating->execute([$user['id']]);
                 $stat = $qRating->fetch();
@@ -93,11 +91,7 @@ $user = $_SESSION['user'];
                 <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
                     <div>
                         <p class="text-slate-400 text-xs font-bold uppercase">Performa Anda</p>
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-star text-yellow-400 text-2xl"></i>
-                            <span class="text-3xl font-black text-slate-800"><?= $avg ?></span>
-                            <span class="text-slate-400 text-sm">/ 5.0</span>
-                        </div>
+                        <div class="flex items-center gap-2"><i class="fas fa-star text-yellow-400 text-2xl"></i><span class="text-3xl font-black text-slate-800"><?= $avg ?></span><span class="text-slate-400 text-sm">/ 5.0</span></div>
                     </div>
                     <div class="text-right">
                         <p class="text-2xl font-bold text-blue-600"><?= $stat['total_ulasan'] ?> Order</p>
@@ -123,6 +117,13 @@ $user = $_SESSION['user'];
                             <span class="text-slate-400 text-sm">#<?= $order['id'] ?></span>
                         </div>
                         <h3 class="text-xl font-bold text-slate-800"><?= htmlspecialchars($order['customer']) ?></h3>
+                        
+                        <div class="mb-2">
+                            <span class="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg text-xs font-bold uppercase border border-blue-100">
+                                <i class="fas fa-box-open mr-1"></i> <?= htmlspecialchars($order['layanan'] ?? 'Kiloan Hemat') ?>
+                            </span>
+                        </div>
+
                         <p class="text-slate-500 text-sm mb-4"><i class="fas fa-map-marker-alt text-red-400 mr-1"></i> <?= htmlspecialchars($order['alamat_jemput']) ?></p>
                         <div class="flex gap-4 text-sm font-medium text-slate-600 bg-slate-50 p-3 rounded-xl inline-flex">
                             <span><i class="fas fa-weight-hanging"></i> <?= $order['berat_kg'] ?> Kg</span>
@@ -139,7 +140,7 @@ $user = $_SESSION['user'];
                 </div>
                 <?php endwhile; ?>
             </div>
-
+            
             <div class="mb-12">
                 <h3 class="text-xl font-bold text-slate-700 mb-4">Ulasan Terakhir Customer</h3>
                 <div class="grid md:grid-cols-2 gap-4">
@@ -172,7 +173,7 @@ $user = $_SESSION['user'];
                             <tr class="bg-slate-50 text-slate-600 text-sm uppercase tracking-wider border-b border-slate-200">
                                 <th class="p-5 font-bold">ID</th>
                                 <th class="p-5 font-bold">Pelanggan</th>
-                                <th class="p-5 font-bold">Total</th>
+                                <th class="p-5 font-bold">Layanan</th> <th class="p-5 font-bold">Total</th>
                                 <th class="p-5 font-bold">Status</th>
                                 <th class="p-5 font-bold">Driver</th>
                                 <th class="p-5 font-bold text-center">Rating</th>
@@ -189,6 +190,9 @@ $user = $_SESSION['user'];
                             <tr class="hover:bg-blue-50/50 transition">
                                 <td class="p-5 font-bold text-slate-400">#<?= $o['id'] ?></td>
                                 <td class="p-5 font-bold text-slate-700"><?= htmlspecialchars($o['customer'] ?? '-') ?></td>
+                                <td class="p-5 text-sm text-blue-600 font-bold">
+                                    <?= htmlspecialchars($o['layanan'] ?? 'Kiloan Hemat') ?>
+                                </td>
                                 <td class="p-5 text-sm font-medium">Rp <?= number_format($o['total_harga']) ?></td>
                                 <td class="p-5"><span class="badge status-<?= $o['status'] ?>"><?= ucfirst($o['status']) ?></span></td>
                                 <td class="p-5 text-slate-600"><?= htmlspecialchars($o['driver'] ?? '-') ?></td>
