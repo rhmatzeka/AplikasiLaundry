@@ -83,7 +83,6 @@ if($_POST){
             </a>
             
             <div class="flex items-center gap-4">
-                <a href="index.php" class="text-slate-500 hover:text-blue-600 font-medium text-sm transition hidden md:block">Beranda</a>
                 <a href="dashboard.php" class="text-slate-500 hover:text-blue-600 font-medium transition flex items-center gap-2 text-sm">
                     <i class="fas fa-arrow-left"></i> Kembali Dashboard
                 </a>
@@ -212,7 +211,6 @@ if($_POST){
         const alamatInput = document.getElementById('alamatInput');
         const loadingText = document.getElementById('loadingText');
 
-        // Fungsi Helper: Update Marker & Input Hidden
         function setLocation(lat, lng) {
             if (marker) map.removeLayer(marker);
             marker = L.marker([lat, lng]).addTo(map).bindPopup('Lokasi Jemput').openPopup();
@@ -220,47 +218,50 @@ if($_POST){
             lngInput.value = lng;
         }
 
-        // Cek Geolocation Browser saat awal buka
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 const userLat = position.coords.latitude;
                 const userLng = position.coords.longitude;
                 map.setView([userLat, userLng], 15);
-                // Opsional: setLocation(userLat, userLng); // Jangan auto set marker biar user milih sendiri
             });
         }
 
-        // --- 2. LOGIKA KLIK MAP -> ISI ALAMAT OTOMATIS (REVERSE GEOCODING) ---
+        // --- 2. LOGIKA KLIK MAP (MENGGUNAKAN API BigDataCloud) ---
+        // Alasan: Lebih stabil untuk free usage dibanding Nominatim yang sering error 429
         map.on('click', async function(e) {
             const { lat, lng } = e.latlng;
             setLocation(lat, lng);
             
-            // Tampilkan loading di placeholder
             alamatInput.setAttribute('placeholder', 'Sedang mengambil alamat...');
             
             try {
-                // Gunakan Nominatim API (Gratis)
-                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+                // Gunakan BigDataCloud (Gratis & Cepat)
+                const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=id`);
                 const data = await response.json();
                 
-                if(data && data.display_name) {
-                    alamatInput.value = data.display_name;
+                // Susun format alamat dari data BigDataCloud
+                const parts = [];
+                if(data.locality) parts.push(data.locality);
+                if(data.city) parts.push(data.city);
+                if(data.principalSubdivision) parts.push(data.principalSubdivision);
+                if(data.countryName) parts.push(data.countryName);
+
+                if(parts.length > 0) {
+                    alamatInput.value = parts.join(", ");
                 } else {
-                    alamatInput.value = "Alamat tidak ditemukan, silakan ketik manual.";
+                    alamatInput.value = "Alamat tidak terdeteksi detail, silakan lengkapi.";
                 }
             } catch (error) {
                 console.error("Gagal mengambil alamat:", error);
                 alamatInput.value = ""; 
-                alert("Gagal mengambil detail alamat otomatis. Silakan ketik manual.");
+                alert("Gagal koneksi ke server maps. Silakan ketik alamat manual.");
             }
         });
 
-        // --- 3. LOGIKA KETIK ALAMAT -> PINDAH MAP OTOMATIS (FORWARD GEOCODING) ---
+        // --- 3. LOGIKA KETIK ALAMAT (Masih pakai Nominatim tapi di-debounce) ---
         let typingTimer;
         alamatInput.addEventListener('input', function() {
             const query = alamatInput.value;
-            
-            // Reset timer (Debounce biar gak spam API setiap ketik huruf)
             clearTimeout(typingTimer);
             
             if(query.length > 3) {
@@ -274,8 +275,6 @@ if($_POST){
                         if(data.length > 0) {
                             const lat = data[0].lat;
                             const lon = data[0].lon;
-                            
-                            // Pindahkan Map & Marker
                             map.setView([lat, lon], 16);
                             setLocation(lat, lon);
                         }
@@ -284,11 +283,11 @@ if($_POST){
                     } finally {
                         loadingText.classList.add('hidden');
                     }
-                }, 1000); // Tunggu 1 detik setelah berhenti mengetik baru cari
+                }, 1500); // Delay 1.5 detik agar tidak spam request
             }
         });
 
-        // --- 4. LOGIKA HITUNG HARGA (Sama seperti sebelumnya) ---
+        // --- 4. LOGIKA HITUNG HARGA ---
         function updateTotal() {
             const berat = parseFloat(document.getElementById('beratInput').value) || 0;
             const radios = document.getElementsByName('layanan');
